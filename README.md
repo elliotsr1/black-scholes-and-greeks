@@ -1,7 +1,7 @@
 # Black–Scholes explorer
 
 An interactive Python app for European option pricing, Greeks, and implied
-volatility under the Black–Scholes–Merton model — including a Newton-method
+volatility under the Black–Scholes–Merton model, including a Newton-method
 IV solver with a visible iteration trace, and a volatility smile computed
 live from real SPY market data.
 
@@ -28,20 +28,20 @@ pytest                     # runs the test suite
 
 ## Features
 
-- **Live pricing dashboard** — sliders for spot `S`, strike `K`, time to
+- **Live pricing dashboard** - sliders for spot `S`, strike `K`, time to
   expiry `T`, volatility `σ`, risk-free rate `r`, and dividend yield `q`,
   with a call/put toggle. Price and all Greeks re-compute on drag, plus
   profiles of value, delta, gamma, vega, and theta across the spot range.
-- **Implied volatility solver** — enter a market price and Newton's method
+- **Implied volatility solver** - enter a market price and Newton's method
   inverts the pricer to recover the volatility, with the full iteration
   trace shown (σ, model price, error at each step). Seeded with the
   Brenner–Subrahmanyam approximation and safeguarded by a bisection bracket,
   so it converges even where vega is tiny; prices outside the no-arbitrage
   bounds are rejected.
-- **Volatility smile from real data** — a snapshot of SPY call mid-quotes
+- **Volatility smile from real data** - a snapshot of SPY call mid-quotes
   (CBOE delayed quotes, 3 expiries × ~50 liquid strikes) is inverted through
   that same solver, using the current `r` and `q` sliders as carry
-  assumptions. The downward skew — and its steepening at short expiry — is
+  assumptions. The downward skew and its steepening at short expiry is
   the market pricing fat left tails that the lognormal model doesn't have.
 - **Data tables** — the plotted grids and the quotes/solved IVs are all
   available as tables, not just charts.
@@ -81,7 +81,7 @@ iterations to ~1e-9.
   the payoff; deep ITM/OTM deltas go to ±1/0.
 - **Greeks match finite differences** of the price function (central
   differences, all five Greeks, both option types).
-- **IV round-trips**: `price(σ) → implied_vol → σ` to 1e-6 — restricted to
+- **IV round-trips**: `price(σ) → implied_vol → σ` to 1e-6: restricted to
   parameter sets where vega is meaningful, because where vega underflows,
   many σ values produce the identical float price and implied vol is
   mathematically unidentifiable (a property of the problem, not the solver).
@@ -92,6 +92,6 @@ iterations to ~1e-9.
 
 European exercise, lognormal underlying, constant `σ`, `r`, `q`, no
 frictions. SPY options are American-style, so their Black–Scholes IVs are an
-approximation — reasonable for calls on a low-dividend underlying, where the
+approximation, which is reasonable for calls on a low-dividend underlying, where the
 early-exercise premium is small. Smile quotes below the no-arbitrage floor
 for the chosen `r`/`q` are omitted rather than force-fitted.
