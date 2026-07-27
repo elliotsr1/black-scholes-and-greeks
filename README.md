@@ -8,6 +8,8 @@ live from real SPY market data.
 Built with NumPy/SciPy for the math, Streamlit + Plotly for the interface,
 and pytest for verification (408 tests).
 
+**[▶ Live demo]([https://your-app.streamlit.app](https://black-scholes-and-greeks-elliotsr1.streamlit.app))**
+
 ## Quickstart
 
 ```bash
